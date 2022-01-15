@@ -1,0 +1,19 @@
+INTERNET
+
+
+Client -> 
+Internet Service Provider -> 
+DNS Server (domain name system server) ->                         ("phone book with IPs")
+Server
+
+
+DATA
+3 types
+HTML - structure
+CSS - styling
+JS - do things
+
+www.techcrunch.com
+inspect -> chrome dev tools
+
+stackoverflow
