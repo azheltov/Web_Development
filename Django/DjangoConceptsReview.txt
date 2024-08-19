@@ -1,0 +1,26 @@
+What is Django?
+Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. 
+It follows the "Don't Repeat Yourself" (DRY) principle and emphasizes reusability and the pluggable nature of components.
+
+Core Components:
+Models: Define your data structure. A model is a class that represents a table in the database.
+Templates: Used to render the data from the models into HTML. Templates are the front-end of your application.
+Views: Handle the logic of your application, processing requests, retrieving data from models, and rendering the appropriate templates.
+
+2. The MTV Architecture
+Model: Represents the database schema and handles data storage. In Django, models are defined in the models.py file using Django's ORM (Object-Relational Mapping).
+Template: Manages how data is presented. Django templates are written in HTML with a mix of Django Template Language (DTL) tags.
+View: The controller of the framework, although it's referred to as a view in Django. Views retrieve data, process it, and return a rendered template or JSON response.
+
+3. Django Models
+Defining Models: Models are Python classes that subclass django.db.models.Model. Each model corresponds to a table in the database.
+Fields: Fields represent the columns in your database table. Examples include CharField, IntegerField, DateField, etc.
+Relationships: Models can have relationships like ForeignKey, ManyToManyField, or OneToOneField to represent relationships between tables.
+
+4. Django Templates
+Template Inheritance: Django allows you to define a base template and extend it for other templates. This promotes reusability and a consistent layout.
+Context: When rendering a template, you pass a context—a dictionary of data that the template can use to render HTML dynamically.
+
+5. Django Views
+Function-Based Views (FBVs): Simple Python functions that take a request and return a response.
+Class-Based Views (CBVs): More powerful views that are implemented as classes. They provide more structure and reusable components.
