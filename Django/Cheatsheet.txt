@@ -1,0 +1,143 @@
+1. Setting Up a Django Project
+
+Install Django:
+bash
+Copy code
+pip install django
+Create a New Project:
+bash
+Copy code
+django-admin startproject projectname
+Run Development Server:
+bash
+Copy code
+python manage.py runserver
+
+2. Creating a Django App
+Create a New App:
+bash
+Copy code
+python manage.py startapp appname
+Add App to Installed Apps: In settings.py, add 'appname', to INSTALLED_APPS.
+
+3. Models
+Define a Model:
+
+python
+Copy code
+from django.db import models
+
+class ModelName(models.Model):
+    field_name = models.FieldType()
+Common Field Types:
+
+CharField(max_length=255)
+TextField()
+IntegerField()
+DateTimeField(auto_now_add=True)
+ForeignKey(ModelName, on_delete=models.CASCADE)
+Migrate Models:
+
+bash
+Copy code
+python manage.py makemigrations
+python manage.py migrate
+4. Admin Interface
+Register a Model:
+python
+Copy code
+from django.contrib import admin
+from .models import ModelName
+
+admin.site.register(ModelName)
+5. Views
+Function-Based View:
+python
+Copy code
+from django.http import HttpResponse
+
+def view_name(request):
+    return HttpResponse("Hello, World!")
+Class-Based View:
+python
+Copy code
+from django.views import View
+from django.http import HttpResponse
+
+class MyView(View):
+    def get(self, request):
+        return HttpResponse("Hello, World!")
+6. URL Routing
+Define URL Patterns:
+
+python
+Copy code
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('route/', views.view_name, name='view_name'),
+]
+Include URLs from an App:
+
+python
+Copy code
+from django.urls import include, path
+
+urlpatterns = [
+    path('app/', include('appname.urls')),
+]
+7. Templates
+Create a Template: Save an HTML file in appname/templates/appname/.
+Render a Template:
+python
+Copy code
+from django.shortcuts import render
+
+def view_name(request):
+    return render(request, 'appname/template.html', {'key': 'value'})
+8. Forms
+Create a Form:
+python
+Copy code
+from django import forms
+
+class MyForm(forms.Form):
+    name = forms.CharField(label='Your name', max_length=100)
+Handle Form in a View:
+python
+Copy code
+from .forms import MyForm
+
+def view_name(request):
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+        if form.is_valid():
+            # Process data
+    else:
+        form = MyForm()
+
+    return render(request, 'template.html', {'form': form})
+
+9. Static Files and Media
+Static Files:
+Place static files in appname/static/appname/.
+Ensure STATIC_URL and STATICFILES_DIRS are set in settings.py.
+Media Files:
+Place media files in a directory defined by MEDIA_ROOT in settings.py.
+Access them via MEDIA_URL.
+10. Testing
+Create a Test:
+
+python
+Copy code
+from django.test import TestCase
+
+class SimpleTest(TestCase):
+    def test_basic_addition(self):
+        self.assertEqual(1 + 1, 2)
+Run Tests:
+
+bash
+Copy code
+python manage.py test
