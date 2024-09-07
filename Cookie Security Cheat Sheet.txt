@@ -1,0 +1,48 @@
+# Cookie Security Cheat Sheet
+
+---
+
+### 1. SameSite Attribute
+- **Purpose**: Mitigates CSRF (Cross-Site Request Forgery) attacks by controlling when cookies are sent with cross-site requests.
+
+- **Options**:
+  - `SameSite=Strict`:
+    - **Use Case**: Highest security; cookie **won’t be sent** with any cross-site requests.
+    - **Example**: Use for sensitive session cookies.
+  
+  - `SameSite=Lax`:
+    - **Use Case**: Allows cookies for top-level navigations (GET requests) but blocks cross-site requests like POST.
+    - **Example**: Use for login pages or similar workflows where some cross-site requests are required.
+  
+  - `SameSite=None`:
+    - **Use Case**: Allows cookies to be sent with **all** cross-site requests. Must be used with `Secure` for modern browsers.
+    - **Example**: Required for third-party cookies (e.g., payment gateways).
+
+---
+
+### 2. Secure Attribute
+- **Purpose**: Ensures cookies are only sent over HTTPS, protecting them from being exposed in unencrypted traffic.
+
+- **Use Case**: Apply to **all cookies** that handle sensitive data, especially session tokens.
+
+- **Example**:
+    ```http
+    Set-Cookie: sessionId=abc123; Secure;
+    ```
+
+---
+
+### 3. Example Cookie with Both Attributes
+```http
+Set-Cookie: sessionId=abc123; Secure; SameSite=Strict;
+
+What it does:
+Secure: Ensures the cookie is only sent over encrypted HTTPS connections.
+SameSite=Strict: Prevents the cookie from being sent on any cross-site request, mitigating CSRF attacks.
+
+4. Best Practices
+Always use Secure with cookies handling sensitive information.
+Default to SameSite=Lax unless your application requires strict restrictions (Strict) or third-party usage (None).
+Test thoroughly when using SameSite=Strict, as it can break some functionalities (e.g., third-party logins).A
+
+
